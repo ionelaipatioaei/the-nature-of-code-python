@@ -1,6 +1,7 @@
 from p5 import *
 
 class Ball:
+	"""A simple ball which goes towards the mouse"""
 	def __init__(self, pos):
 		self.pos = pos
 		self.vel = Vector(0, 0)
@@ -25,10 +26,12 @@ class Ball:
 		self.pos += self.vel
 
 		target = Vector(mouse_x, mouse_y)
+		# Calculates the distance between the mouse and the ball
 		dist = (target - self.pos)
 		dist.normalize()
 		# print(dist)
 
+		# The normalized distance is the added to the velocity
 		self.vel += (dist * 0.1)
 		self.vel.limit(3)
 		self.side()
@@ -38,6 +41,7 @@ ball = None;
 def setup():
 	global ball
 	size(500, 500)
+	title("Towards the Mouse")
 
 	ball = Ball(Vector(width / 2, height / 2))
 

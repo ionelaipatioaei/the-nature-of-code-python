@@ -1,6 +1,8 @@
 from p5 import *
 
 class Ball:
+	"""Simple ball which stays on the screen"""
+
 	def __init__(self):
 		self.pos = Vector(width / 2, height / 2)
 		self.acc = Vector(2, 3)
@@ -21,9 +23,10 @@ class Ball:
 ball = None
 
 def setup():
-	size(500, 500)
-	# TITLE
 	global ball 
+	
+	size(500, 500)
+	title("Boucing Ball")
 	ball = Ball()
 
 def draw():

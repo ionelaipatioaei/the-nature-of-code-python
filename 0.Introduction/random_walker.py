@@ -2,6 +2,8 @@ from p5 import *
 from random import randint
 
 class Walker():
+	"""A simple point which takes a random step"""
+
 	def __init__(self, x, y):
 		self.pos = Vector(x, y)
 
@@ -24,9 +26,11 @@ w = Walker(width / 2, height / 2)
 
 def setup():
 	size(500, 500)
+	background(255)
+	title("Random Walker")
 
 def draw():
-	background(255)
+	# background(255)
 	global w
 	w.show()
 	w.move()

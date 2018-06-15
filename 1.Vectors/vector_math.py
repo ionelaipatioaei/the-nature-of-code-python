@@ -3,6 +3,8 @@ from random import randint
 import math
 
 class Vector:
+	"""Very basic re-implementation of the vector class"""
+
 	def __init__(self, x, y):
 		self.x = x
 		self.y = y
@@ -24,12 +26,15 @@ class Vector:
 		self.y /= amount
 
 	def mag(self):
+		"""This is just the lenght of the vector calculated using the Pythagoran theorem"""
 		return math.sqrt(self.x ** 2 + self.y ** 2)
 
 	def normalize(self):
+		"""Makes the lenght of the vector 1"""
 		self.div(self.mag())
 
 	def coord(self):
+		"""Returns the coords of the vector in a tuple"""
 		return (self.x, self.y)
 
 def rand_vector():
@@ -40,6 +45,7 @@ acc = Vector(-0.15, 0.21)
 
 def setup():
 	size(500, 500)
+	title("Vector Math")
 	background(255)
 
 def draw():

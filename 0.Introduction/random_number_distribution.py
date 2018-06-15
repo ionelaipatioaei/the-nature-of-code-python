@@ -6,9 +6,13 @@ bar_h = [1] * bars
 
 def setup():
 	size(500, 500)
+	title("Random Numbers")
 
 def draw():
 	background(255)
+	"""Every rectangle updates its height randomly by 1;
+	The purpose is to prove that the random function is uniform"""
+
 	amount = int(width // bars)
 	global bar_h
 	fill(0)
