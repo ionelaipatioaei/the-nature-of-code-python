@@ -1,6 +1,8 @@
 from p5 import *
 
 class Ball:
+    """A simple ball class"""
+
     def __init__(self, pos, mass):
         self.pos = pos
         self.vel = Vector(0, 0)
@@ -44,7 +46,12 @@ def draw():
 
     ball.apply_force(Vector(0, 0.2))
 
+    # Applies friction as a force when the mouse is pressed
     if mouse_is_pressed:
+        # The friction formula is Friction = -1 * mu * N * v^,
+        # where mu is the friction coefficient, N is the normal force, usually 1
+        # v^ is the velocity vector normalized, -1 is used to reverse the direction of the vector
+
         friction = ball.vel.copy()
         friction.normalize()
         friction *= -0.1
