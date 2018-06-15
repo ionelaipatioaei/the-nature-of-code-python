@@ -18,7 +18,7 @@ def draw():
     fill(0)
     stroke(200)
     for x in range(0, bars):
-        rect((x*amount, height), amount, -bar_h[x])
+        rect((x * amount, height), amount, -bar_h[x])
     r_bar = randint(0, bars - 1)
     bar_h[r_bar] += 1
     print(bar_h)
