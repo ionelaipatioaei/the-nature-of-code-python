@@ -23,7 +23,7 @@ class Ball:
 
         self.acc *= 0
 
-        print(round(self.pos.x, 1), round(self.pos.y, 1), end="\r")
+        # print(round(self.pos.x, 1), round(self.pos.y, 1), end="\r")
 
     def apply_force(self, force):
         f = force / self.mass
