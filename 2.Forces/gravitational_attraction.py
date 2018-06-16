@@ -2,6 +2,8 @@ from p5 import *
 from random import randint
 
 class Sun:
+    """An object which can't move on its own and attracts other objects"""
+
     def __init__(self, pos, mass):
         self.pos = pos
         self.mass = mass
@@ -13,6 +15,13 @@ class Sun:
         circle(self.pos, self.mass * 5)
 
     def attract(self, planet):
+        """Calculates the attraction force using this formula:
+        F = ((g * m1 * m2) / r^2) * r^, where
+        F is the result, g is the universal gravitational constant, we can make the force stronger or weaker, 
+        usually is left 1 in the programming world, m1 and m2 are the masses of the Sun and the provided object,
+        r^ is the unit vector pointing from object 1(the Sun) and object 2, i.e: (self.pos - planet.pos).normalize(),
+        r^2 is the distance between the two objects squared, i.e: ((self.pos - planet.pos).magnitude) ** 2
+        """
         force = self.pos.copy() - planet.pos.copy()
         dist = force.magnitude
         dist = constrain(dist, 5, 20)
@@ -25,6 +34,8 @@ class Sun:
         return min(max_val, max(min_val, val))
 
 class Planet:
+    """An objects which is attracted by the Sun"""
+
     def __init__(self, pos, mass):
         self.pos = pos
         self.vel = Vector(0, 0)
@@ -54,7 +65,7 @@ def setup():
     global sun, planet
 
     size(500, 500)
-    title("Gravitation Attraction")
+    title("Gravitational Attraction")
 
     sun = Sun(Vector(width / 2, height / 2), 20)
     planet = Planet(Vector(100, 100), 2)
@@ -67,6 +78,7 @@ def draw():
     planet.apply_force(sun.attract(planet))
     # print(sun.attract(planet), planet.vel, end="\r")
 
+    # Moves the Sun at the mouse coords
     if mouse_is_pressed:
         sun.pos = Vector(mouse_x, mouse_y)
 

@@ -2,6 +2,8 @@ from p5 import *
 import random
 
 class Liquid:
+    """An area represented as an rectangle, when objects fall in it, the object slows down"""
+    
     def __init__(self, y_pos, drag_coeff):
         self.pos = Vector(0, y_pos)
         self.drag_coeff = drag_coeff
@@ -12,9 +14,19 @@ class Liquid:
         rect(self.pos, width, height)
 
     def collide(self, obj):
+        """Return true if the obj is in the liquid area"""
         return obj.pos.y > self.pos.y
 
     def calculate_resistance(self, obj):
+        """Calculates the resistance using this formula:
+        Fd = -1/2 * rho * v^2 * A * drag_coeff * v^, where
+        Fd is the result, -1/2 is a constant which changes the direction of the force,
+        rho is the density, we can leave that at 1,
+        v^2 is the squared speed of the object, i.e: obj.vel.magnitude ** 2,
+        A is the front area, we can leave that at 1,
+        drag_coeff can set the drag force weak or strong,
+        v^ is unit vector, i.e: obj.vel.normalize()
+        """
         speed = ((obj.vel.copy().magnitude) ** 2) * self.drag_coeff
         drag = obj.vel.copy()
         drag.normalize()
@@ -66,16 +78,18 @@ def draw():
     liquid.show()
 
     for ball in balls:
+        # Reset the balls if the mouse is pressed
         if mouse_is_pressed:
             ball.pos.y = 0
             mass = random.uniform(0.3, 3)
             ball.mass = mass
+            # For some reason you need to specify the size
             ball.size = mass * 20
             ball.vel *= 0
             ball.acc *= 0
 
         ball.show()
-        # Gravity force
+        # Gravity force, scales with mass
         ball.apply_force(Vector(0, 0.1 * ball.mass))
         if liquid.collide(ball):
             ball.apply_force(liquid.calculate_resistance(ball))
