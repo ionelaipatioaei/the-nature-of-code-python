@@ -26,5 +26,4 @@ def draw():
         y = r * cos(angle)
         ellipse((x, y), 8, 8)
 
-
 run()
