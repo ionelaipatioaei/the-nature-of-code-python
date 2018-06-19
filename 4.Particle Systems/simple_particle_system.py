@@ -23,7 +23,7 @@ class Particle:
 
         self.lifespan -= 1.75
 
-    def isDead(self):
+    def is_dead(self):
         return self.lifespan <= 0
 
 class ParticleSystem:
@@ -44,9 +44,9 @@ class ParticleSystem:
         for i in range(len(self.elements) - 1, -1, -1):
             self.elements[i].show()
             self.elements[i].update()
-            if self.elements[i].isDead():
+            if self.elements[i].is_dead():
                 self.elements.pop(i)
-        # print(len(self.elements))
+        print(len(self.elements))
 
 
 particle_systems = []
@@ -58,14 +58,14 @@ def setup():
 def draw():
     global particle_systems
     background(255)
-    
+
     if len(particle_systems) > 0:
         for particle_system in particle_systems:
             particle_system.update()
 
     # print(len(particle_systems))
 
-# This function is invoked only once when the mouse is pressed even if keep it pressed 
+# This function is invoked only once when the mouse is pressed even if you keep it pressed 
 def mouse_pressed():
     # Creates a new particle system at the mouse coords
     particle_systems.append(ParticleSystem(Vector(mouse_x, mouse_y)))
