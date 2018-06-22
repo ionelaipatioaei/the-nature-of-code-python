@@ -47,7 +47,7 @@ class Line:
     def show(self):
         # You start with how many vertices the shape will have, in our case 2, after that you specify the shape type
         pyglet.graphics.draw(2, pyglet.gl.GL_LINES,
-            # "v2f" stands for vertex2intenger, there is also a "v2f" which accepts floats instead of ints,
+            # "v2i" stands for vertex2intenger, there is also a "v2f" which accepts floats instead of ints,
             # A vertex holds 2, 3 or 4 components (for 2D, 3D, or non-homogeneous coordinates) - ("v2i", "v3i", "v4i")
             # The values are basically coordinates
             # Note that the (0, 0) coord is at the bottom left of the window
