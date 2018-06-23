@@ -30,6 +30,12 @@ class Vec2:
         m = self.mag()
         self.div(m)
 
+    def limit(self, limit):
+        m_sq = self.mag() ** 2
+        if m_sq > limit ** 2:
+            self.div(sqrt(m_sq))
+            self.mult(limit)
+
     def copy(self):
         return Vec2(self.x, self.y)
 
@@ -90,7 +96,8 @@ class Creature:
         steer.sub(self.vel)
 
         # Limit how much the creature can steer towards the target
-        steer.mult(0.01)
+        steer.limit(0.03)
+        print(steer.mag())
 
         # Apply the force only if the creature is close to the target
         if dist < 200:
