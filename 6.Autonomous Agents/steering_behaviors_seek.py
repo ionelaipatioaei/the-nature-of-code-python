@@ -96,8 +96,8 @@ class Creature:
         steer.sub(self.vel)
 
         # Limit how much the creature can steer towards the target
-        steer.limit(0.03)
-        print(steer.mag())
+        steer.limit(0.04)
+        # print(steer.mag())
 
         # Apply the force only if the creature is close to the target
         if dist < 200:
