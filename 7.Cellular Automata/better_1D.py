@@ -13,8 +13,6 @@ class CA:
         self.cells[WIDTH // self.cell_width // 2] = 1
         self.generation = 0
 
-        self.history = [self.cells]
-
     def run(self):
         # I do not understand this bug, help needed!
         next_gen = [0] * len(self.cells)
@@ -29,7 +27,6 @@ class CA:
             self.rect((i * self.cell_width, WIDTH - self.cell_width - self.generation * self.cell_width), self.cell_width, self.cell_width, color)
 
         self.cells = next_gen
-        self.history.append(self.cells)
         self.generation += 1
         
     def rect(self, pos, width, height, color):
